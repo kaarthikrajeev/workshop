@@ -1,0 +1,96 @@
+{% extends 'userbase.html' %} 
+{% block content %}
+
+<style>
+
+.btn{
+
+    background-color: rgb(216, 100, 54);
+}
+th,
+    td {
+        padding: 10px;
+        color:white;
+    }
+    th{
+        /* background-color: #01025c; */
+        color: white;
+    }
+    h3{
+
+        color:white;
+    }
+
+</style>
+{% if messages %}
+    {% for msg in messages %}
+        <script>alert('{{msg}}');</script>
+    {% endfor %}
+{% endif %}
+
+<center>
+
+
+{% if wrk %}
+
+            <table border="0" id="tb">
+                {% for s in wrk %}
+                <tr>
+                    <th>ID</th>
+                    <td>{{s.id}}</td>
+                </tr>
+                <tr>
+                    <th>name</th>
+                    <td>{{s.rid.uid.name}}</td>
+                </tr>
+                <tr>
+                    <th>Vehicle Name</th>
+                    <td>{{s.rid.vname}}</td>
+                </tr>   
+                <tr>
+                    <th>Vehicle Type</th>
+                    <td>{{s.rid.vtype}}</td>
+                </tr>
+                <tr>
+                    <th>Request Description</th>
+                    <td>{{s.rid.desc}}</td>
+                </tr>
+                <tr>
+                    <th>Technician</th>
+                    <td>{{s.sid.name}}</td>
+                </tr>
+                <tr>
+                    <th>Scheduled Date</th>
+                    <td>{{s.sdate}}</td>
+                </tr>
+                <tr>
+                    <th>Completed Date</th>
+                    <td>{{s.edate}}</td>
+                </tr>
+                <tr>
+                    <th>Work Description</th>
+                    <td>{{s.desc}}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{s.status}}</td>
+                </tr>
+                <tr>
+                    {% if s.id not in al  %}
+                    <td><a href="addfeedback?id={{s.id}}">Add Feedback</a></td>
+                    {% endif %}
+                    {% if s.status != 'paid'  %}
+                    <td><a href="addpayment?id={{s.id}}">Add Payment</a></td>
+                    {% endif %}
+                </tr>
+
+                {% endfor %}
+            </table>
+{% else %}
+
+<h3>No Result Found</h3>
+
+{% endif %}
+
+{% endblock %}
+</center>

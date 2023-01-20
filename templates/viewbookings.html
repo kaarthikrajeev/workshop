@@ -1,0 +1,67 @@
+{% extends 'adminbase.html' %} 
+{% block content %}
+
+<style>
+
+.btn{
+
+    background-color: rgb(216, 100, 54);
+}
+th,
+    td {
+        padding: 10px;
+        color:white;
+    }
+    th{
+        background-color: #01025c;
+        color: white;
+    }
+    h3{
+        color:white
+    }
+
+</style>
+{% if messages %}
+    {% for msg in messages %}
+        <script>alert('{{msg}}');</script>
+    {% endfor %}
+{% endif %}
+
+<center>
+
+
+{% if book %}
+            <table border="0" id="tb" style="width:380px;margin-top:10px;">
+                <tr>
+                    <th>ID</th>
+                    <th>customer</th>
+                    <th>Phone</th>
+                    <th>Vehicle name</th>
+                    <th>Request Date</th>
+                    <th>Description</th>
+                    <th colspan="3">Status</th>
+                
+                </tr>
+                {% for s in book %}
+                <tr>
+                    <td>{{s.id}}</td>
+                    <td>{{s.uid.name}}</td>
+                    <td>{{s.uid.phone}}</td>
+                    <td>{{s.vname}}</td>
+                    <td>{{s.date}}</td>
+                    <td>{{s.desc}}</td>
+                    <td>{{s.status}}</td>
+                    <td><a href="/schedulebooking?id={{s.id}}" >Allocate</a></td>
+                    <td><a href="/cancelbooking?id={{s.id}}" >Cancel</a></td>
+
+                </tr>
+                {% endfor %}
+            </table>
+{% else %}
+
+<h3>No Result Found</h3>
+
+{% endif %}
+
+{% endblock %}
+</center>

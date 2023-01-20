@@ -1,0 +1,54 @@
+{% extends 'userbase.html' %}
+
+{% load static %} 
+
+{% block content %}
+{% if messages %}
+{% for msg in messages %}
+<script>alert('{{msg}}');</script>
+{% endfor %}
+{% endif %}
+<style>
+	h1{
+		color:white;
+	}
+	h3{
+		font-family: 'Times New Roman', Times, serif;
+		margin-top:20px;
+	}
+	p{
+		font-family: 'Times New Roman', Times, serif;
+		margin-top:20px;
+		font-weight: bold;
+		font-size: large;
+	}
+</style>
+<div class="row" style="margin-top:70px;">
+	<div class="col-md-3">                     
+		
+	</div>
+	<div class="col-md-6" style="padding:30px;">
+
+        <form action="#" method="post" class="p-3 shadow">
+            {% csrf_token %}
+            <center><h1>Feedback</h1></center>
+            <div class="form-group" style="margin-top:20px">
+                 <textarea cols="10" rows="10" name="feed" class="form-control" placeholder="feedback"></textarea>
+            </div>
+                <input type="submit"  class="btn btn-success" style="margin-top:20px;background-color:red; margin-left:45%; width:20%;">
+        
+        </form>
+            
+		
+	</div>
+	
+	<div class="col-md-3">                     	
+	</div>
+	<div class="clearfix"></div>
+</div>
+{% endblock %}
+
+
+
+
+

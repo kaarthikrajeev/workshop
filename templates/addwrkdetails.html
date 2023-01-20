@@ -1,0 +1,72 @@
+{% extends 'techbase.html' %}
+{% block content %}
+<style>
+    th,
+    td {
+        padding: 10px;
+        color:white;
+    }
+    th{
+        background-color: #01025c;
+        color: white;
+    }
+   h2,h3{
+        color:white;
+    }
+</style>
+<center>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>alert('{{msg}}');</script>
+    {% endfor %}
+    {% endif %}
+    <div style="margin: 50px;">
+        <hr>
+        <h2 style="margin: 10px;">Schedule</h2>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {% if data  %}
+            <table>
+                <tr>
+                    <td>Customer Name</td>
+                    <td><input type="text" class="form-control" name="name" value="{{data.rid.uid.name}}" pattern="[a-zA-Z ]+" readonly></td>
+                </tr>
+                <tr>
+                    <td>Scheduled Date</td>
+                    <td><input type="text" class="form-control" name="sdt" value="{{data.sdate}}" readonly></td>
+                </tr>
+
+                <tr>
+                    <td>Completed Date</td>
+                    <td><input type="date" class="form-control" name="edt" required></td>
+                </tr>
+
+                <tr>
+                    <td>Amount</td>
+                    <td><input type="text" class="form-control" name="amt" required></td>
+                </tr>
+
+                <tr>
+                    <td>Description</td>
+                    <td><textarea name="desc" class="form-control"  rows="5" cols="25" style="color:black"></textarea></td>
+                </tr>
+                
+               
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="btn btn-primary" style="color: white;" value="Submit"></td>
+                </tr>
+            </table>
+
+            {%  endif %}
+        </form>
+       
+    </div>
+</center>
+<script>
+    var msg = "{{msg}}";
+    if (msg != "")
+        alert(msg)
+</script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'adminbase.html' %} 
+{% block content %}
+
+<style>
+
+.btn{
+
+    background-color: rgb(216, 100, 54);
+}
+th,
+    td {
+        padding: 10px;
+        color:white;
+    }
+    th{
+        background-color: #01025c;
+        color: white;
+    }
+    h3{
+        color:white;
+    }
+
+</style>
+{% if messages %}
+    {% for msg in messages %}
+        <script>alert('{{msg}}');</script>
+    {% endfor %}
+{% endif %}
+
+<center>
+
+
+{% if feed %}
+            <table border="0" id="tb" style="width:380px;margin-top:10px;">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Feedback</th>
+                
+                </tr>
+                {% for s in feed %}
+                <tr>
+                    <td>{{s.id}}</td>
+                    <td>{{s.uid.name}}</td>
+                    <td>{{s.uid.phone}}</td>
+                    <td>{{s.feed}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+{% else %}
+
+<h3>No Result Found</h3>
+
+{% endif %}
+
+{% endblock %}
+</center>

@@ -1,0 +1,69 @@
+{% extends 'userbase.html' %}
+{% block content %}
+<style>
+    th,
+    td {
+        padding: 10px;
+        color:white;
+    }
+    th{
+        background-color: #01025c;
+        color: white;
+    }
+   h2,h3{
+        color:white;
+    }
+</style>
+<center>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>alert('{{msg}}');</script>
+    {% endfor %}
+    {% endif %}
+    <div style="margin: 50px;">
+        <hr>
+        <h2 style="margin: 10px;">Booking</h2>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {% if u  %}
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" class="form-control" name="name" value="{{u.name}}" pattern="[a-zA-Z ]+" readonly></td>
+                </tr>
+               
+                <tr>
+                        <td>Vehicle Type</td>
+                        <td><select name="vtype" class="form-control">
+                            <option value="2Wheeler">2 Wheelers</option>
+                            <option value="4Wheeler">4 Wheelers</option>
+                            </select>
+                        </td>
+                </tr>               
+                <tr>
+                    <td>Vehicle Model</td>
+                    <td><input type="text" class="form-control" name="vmodel" required></td>
+                </tr>
+                
+                <tr>
+                    <td>Description</td>
+                    <td><textarea name="desc" style="color:black;"  class="form-control"  required></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" class="btn btn-primary" style="color: white;" value="Register"></td>
+                </tr>
+            </table>
+
+            {%  endif %}
+        </form>
+       
+    </div>
+</center>
+<script>
+    var msg = "{{msg}}";
+    if (msg != "")
+        alert(msg)
+</script>
+{% endblock %}
